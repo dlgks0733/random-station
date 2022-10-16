@@ -27,6 +27,11 @@ class Station(BaseModel):
 		help_text="순번"
 	)
 
+	def __init__(self, name, line, order):
+		self.name = name
+		self.line = line
+		self.order = order
+
 class Meta:
 	verbose_name="지하철 역"
 	verbose_name_plural="지하철 역 목록"
