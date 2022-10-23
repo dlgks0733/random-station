@@ -2,7 +2,6 @@ from django.db import models
 from .common import BaseModel
 
 # 지하철 역 모델
-# TODO: 필요 Field 추가
 class Station(BaseModel):
 	name = models.CharField(
 		max_length=64,
@@ -27,10 +26,14 @@ class Station(BaseModel):
 		help_text="순번"
 	)
 
-	def __init__(self, name, line, order):
-		self.name = name
-		self.line = line
-		self.order = order
+	fr_code = models.CharField(
+		max_length=10,
+		blank=False,
+		null=False,
+		verbose_name="외부코드",
+		help_text="외부코드",
+		default='0'
+	)
 
 class Meta:
 	verbose_name="지하철 역"
