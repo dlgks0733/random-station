@@ -1,8 +1,7 @@
 from django.db import models
-from .common import BaseModel
 
 # 지하철 역 모델
-class Station(BaseModel):
+class Station(models.Model):
 	name = models.CharField(
 		max_length=64,
 		blank=False,
@@ -35,10 +34,10 @@ class Station(BaseModel):
 		default='0'
 	)
 
-class Meta:
-	verbose_name="지하철 역"
-	verbose_name_plural="지하철 역 목록"
-	ordering = ['line']
+	class Meta:
+		verbose_name="지하철 역"
+		verbose_name_plural="지하철 역 목록"
+		ordering = ['fr_code']
 
-	def __str__(self):
-		return f"Station-{self.line}-{self.name}"
+		def __str__(self):
+			return f"Station-{self.line}-{self.name}"

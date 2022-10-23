@@ -54,7 +54,6 @@ class RandomstationConfig(AppConfig):
     # 역 정보 저장
     def save(self):
         from .models import Station
-        from .serializers import StationSerializer
         all_contents = self.get_all_contents()
         for (order, content) in enumerate(sorted(all_contents['row'], key = lambda x: x['FR_CODE'])):
             name = content['STATION_NM']
@@ -62,7 +61,6 @@ class RandomstationConfig(AppConfig):
             fr_code = content['FR_CODE']
             station = Station(name=name, line=line, order=order, fr_code=fr_code)
             try:
-                serializer = StationSerializer(station)
-                serializer.create(validated_data=station)
+                Station.save(station)
             except Exception as e:
                 print('Exception: ', e)
